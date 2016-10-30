@@ -3,27 +3,20 @@
   <head>
     <title>Lunch Checker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
     <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <style>
-      .message { font-size: 1.3em; font-weight: bold; }
-    </style>
+    <link rel="stylesheet" href="styles/style.css">  
   </head>
-<body>
-   <div class="container">
-     <h1>Lunch Checker</h1>
-
-         <div class="form-group">
-             <input id="lunch-menu" type="text"
-             placeholder="list comma separated dishes you usually have for lunch"
-             class="form-control">
-         </div>
-         <div class="form-group">
-             <button class="btn btn-default">Check If Too Much</button>
-         </div>
-         <div class="form-group message">
-           <!-- Your message can go here. -->
-         </div>
-   </div>
-
-</body>
+  <body ng-app="LunchCheckApp">
+    <div ng-controller="LunchCheckController">
+      <form ng-submit="getLunchList()">
+        <input type="text" ng-model="lunch" class="{{lunch?'border-valid':'border-error'}}">
+        <input type="submit" value="Check If Too Much" ><br>
+        <span class="error" ng-show="textboxEmpty">Please enter data first</span>
+        <span class="valid" ng-show="counter==3">Yes! Enjoy!</span>
+        <span class="valid" ng-show="counter>3">It's too much !!</span>   
+        <br><li ng-repeat="item in lunchList">{{item}}</li>
+      </form>
+    </div>
+  </body>
 </html>
