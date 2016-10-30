@@ -1,6 +1,11 @@
 *{
   outline:none;
 }
+
+.main-content{
+  padding: 25px;
+}
+
 .error{
   color:red;
 }
