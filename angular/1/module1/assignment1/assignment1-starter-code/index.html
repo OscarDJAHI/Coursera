@@ -12,7 +12,7 @@
     <div ng-controller="LunchCheckController" class="container">
       <h4>Module 1 / Assignment 1 / lunchCheck Test :</h4>
       <form ng-submit="getLunchList()">
-        <input type="text" ng-model="lunch" class="{{lunch?'border-valid':'border-error'}}" placeholder="lunch list comma-separated">
+        <input type="text" ng-model="lunch" class="{{lunch?'border-valid':'border-error'}}" placeholder="Lunch list comma-separated">
         <input type="submit" value="Check If Too Much" ><br>
         <span class="error" ng-show="textboxEmpty">Please enter data first</span>
         <span class="valid" ng-show="counter==3">Yes! Enjoy!</span>
