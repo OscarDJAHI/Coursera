@@ -15,7 +15,7 @@
         <input type="text" ng-model="lunch" class="{{lunch?'border-valid':'border-error'}}" placeholder="Lunch list comma-separated">
         <input type="submit" value="Check If Too Much" ><br>
         <span class="error" ng-show="textboxEmpty">Please enter data first</span>
-        <span class="valid" ng-show="counter==3">Yes! Enjoy!</span>
+        <span class="valid" ng-show="counter<4">Enjoy!</span>
         <span class="valid" ng-show="counter>3">It's too much !!</span>   
         <br><li ng-repeat="item in lunchList">{{item}}</li>
       </form>
