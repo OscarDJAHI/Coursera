@@ -1,40 +1,60 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Lunch Checker</title>
+    <title>Shopping List Check Off</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script src="js/app.js"></script>
-    <link rel="stylesheet" href="styles/bootstrap.min.css">
-    <link rel="stylesheet" href="styles/style.css">  
+    <style>
+      .emptyMessage {
+        font-weight: bold;
+        color: red;
+        font-size: 1.2em;
+      }
+      li {
+        margin-bottom: 7px;
+        font-size: 1.2em;
+      }
+      li > button {
+        margin-left: 6px;
+      }
+      button > span {
+        color: green;
+      }
+    </style>
   </head>
-  <body ng-app="shopApp">
-    <div ng-controller="ShopCtrl" class="container top30" >
-      <div class="row">
-        <div>Product to buy :</div>
-        <ul class="to-buy">
-          <span ng-show="store.toBuy==0"> Everything is bought! </span>
-          <li ng-repeat="item in store.toBuy">
-            <input type="button" value="Buy" ng-click="toBuy($index,item.quantity)" class="btn tiny" >
-            <span>&nbsp;{{ item.quantity }}&nbsp;</span>
-            <span class="productLabel">{{item.name}}</span>
-            <input ng-show="item.boughtBtn" type="button" value="Bought" ng-click="moveInboughtList($index)" class="btn tiny" >
+<body ng-app="ShoppingListCheckOff">
+  <div class="container">
+  <h1>Shopping List Check Off</h1>
 
-          </li>
-        </ul>
-          
-        <div>Already Bought :</div>
-        <ul>
-          <span ng-show="store.bought==0"> Nothing bought yet </span>
-          <li ng-repeat="item in store.bought">
+  <div class="row">
+
+    <!-- To Buy List -->
+    <div class="col-md-6" ng-controller="ToBuyController as vm">
+     <h2>To Buy:</h2>
+     <ul>
+       <li ng-repeat="item in vm.items.toBuy">Buy {{ item.quantity }} {{item.name}} 
+            <button class="btn btn-default" ng-click="vm.moveInboughtList($index,item.quantity)">
+              <span class="glyphicon glyphicon-ok"></span> Bought
+            </button>
+       </li>
+     </ul>
+     <div class="emptyMessage" ng-if="vm.items.toBuy.length==0">Everything is bought!</div>
+    </div>
+
+    <!-- Already Bought List -->
+    <div class="col-md-6" ng-controller="AlreadyBoughtController as vm">
+     <h2>Already Bought:</h2>
+     <li ng-repeat="item in vm.items.bought">
             <span>Bought&nbsp;</span>
             <span>{{item.quantity}}&nbsp;</span>
             <span>{{item.name}}</span>
-          </li>
-        </ul>
-      </div>
+     </li>
+     <div class="emptyMessage" ng-if="vm.items.bought.length == 0">Nothing bought yet.</div>
     </div>
-  </body>
+  </div>
+</div>
+
+</body>
 </html>
-
-
