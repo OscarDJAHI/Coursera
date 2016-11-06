@@ -9,6 +9,11 @@
   color:green;
 }
 
+ul {
+  /*background: red;*/
+  height: 180px;
+}
+
 input[type=text]{
   border-radius :5px;
   width: 45px;  
@@ -21,7 +26,7 @@ input[type=text]{
 input[type=button]{
   border-radius :5px;
   height: 26px;
-  width:50px;
+  width:80px;
   padding: 3px 5px;
   margin:3px 0;
   border:1px solid #ccc;
@@ -37,7 +42,11 @@ input[type=button]{
 .to-buy label > span{
   width:100px;
   display : inline-block;
-  background:red
+}
+
+.to-buy span.productLabel{
+  width:80px;
+  display : inline-block;
 }
 
 .border-grey{

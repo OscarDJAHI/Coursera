@@ -12,30 +12,26 @@
     <div ng-controller="ShopCtrl" class="container top30" >
       <div class="row">
         <div>Product to buy :</div>
-        <form class="form-inline">
-        <span ng-if="message" class="error">{{message}}</span>
         <ul class="to-buy">
+          <span ng-show="store.toBuy==0"> Everything is bought! </span>
           <li ng-repeat="item in store.toBuy">
             <input type="button" value="Buy" ng-click="toBuy($index,item.quantity)" class="btn tiny" >
-            <div class="form-group">
-            <label for="id-qty">Quantity : 
-              <input id="id-qty" type="text" ng-model="item.quantity" ng-focus="item.quantity=''" ng-blur="item.quantity">
-            </label>
-            </div>
-            <span>{{item.name}}  </span>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-            <span>Product stock : {{item.stock}}</span>
+            <span>&nbsp;{{ item.quantity }}&nbsp;</span>
+            <span class="productLabel">{{item.name}}</span>
+            <input ng-show="item.boughtBtn" type="button" value="Bought" ng-click="moveInboughtList($index)" class="btn tiny" >
+
           </li>
         </ul>
           
-        <div>Already Bought:</div>
+        <div>Already Bought :</div>
         <ul>
-          <span ng-show="store.bought==0"> Empty !</span>
+          <span ng-show="store.bought==0"> Nothing bought yet </span>
           <li ng-repeat="item in store.bought">
-            <span>{{item.name}} :</span>
-            <span>{{item.quantity}}</span>
+            <span>Bought&nbsp;</span>
+            <span>{{item.quantity}}&nbsp;</span>
+            <span>{{item.name}}</span>
           </li>
         </ul>
-        </form>
       </div>
     </div>
   </body>

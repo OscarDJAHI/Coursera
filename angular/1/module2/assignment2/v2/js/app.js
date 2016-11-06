@@ -13,13 +13,12 @@
     var toBuylgh,boughtlgh ='';
     var stock = 20;
 
-       
     $scope.store = {
-                toBuy :[{ name: "Cookie", quantity: 0, stock:stock},
-                         { name: "Cake", quantity: 0, stock:stock },
-                         { name: "Pinutt", quantity: 0, stock:stock },
-                         { name: "Pizza", quantity: 0, stock:stock },
-                         { name: "Tomato", quantity: 0, stock:stock }
+                toBuy :[{ name: "Cookies", quantity: 0, stock:stock, "boughtBtn":false},
+                         { name: "Cakes", quantity: 0, stock:stock, "boughtBtn":false},
+                         { name: "Pinutts", quantity: 0, stock:stock, "boughtBtn":false},
+                         { name: "Pizzas", quantity: 0, stock:stock, "boughtBtn":false},
+                         { name: "Tomatoes", quantity: 0, stock:stock, "boughtBtn":false}
                         ],
                 bought :[]
                 };

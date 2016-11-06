@@ -3,61 +3,57 @@
 	"use strict";
 
   var app = angular.module('shopApp',[]);
-
   app.controller("ShopCtrl",ShopCtrl);
-
+  
   ShopCtrl.$inject = ["$scope"];
 
   function ShopCtrl($scope){
 
-    var toBuylgh,boughtlgh ='';
-    var stock = 20;
+    var qty = 20;
 
-       
     $scope.store = {
-                toBuy :[{ name: "Cookie", quantity: 0, stock:stock},
-                         { name: "Cake", quantity: 0, stock:stock },
-                         { name: "Pinutt", quantity: 0, stock:stock },
-                         { name: "Pizza", quantity: 0, stock:stock },
-                         { name: "Tomato", quantity: 0, stock:stock }
-                        ],
-                bought :[]
-                };
-    
-    $scope.shop = function(){
-      return $scope.store;
+        toBuy :[{ name: "Cookies", quantity: qty, "boughtBtn":false},
+                 { name: "Cakes", quantity: qty, "boughtBtn":false},
+                 { name: "Pinutts", quantity: qty, "boughtBtn":false},
+                 { name: "Pizzas", quantity: qty, "boughtBtn":false},
+                 { name: "Tomatoes", quantity: qty, "boughtBtn":false}
+                ],
+        bought :[]
     };
     
-    $scope.toBuy = function(prdctIndex,qty){
-      newStock(prdctIndex,qty);
+    $scope.toBuy = function(item,qty){
+
+      // show bought btn before changing of item value
+      showBoughtButton(item);
+
+      item = $scope.store.toBuy[item].quantity;
+      updateQty(item,qty);
+    };
+
+    $scope.moveInboughtList = function(item){
+      var obj = {name :$scope.store.toBuy[item].name, quantity:$scope.store.toBuy[item].quantity};
+      var arr = $scope.store.bought;
+      addItem(obj,arr);
+
+      arr = $scope.store.toBuy;
+      removeItem(item, arr);
     };
     
-    var newStock = function(prdctIndex, qty){
-         
-        if(qty > $scope.store.toBuy[prdctIndex].stock){
-          $scope.message = "You can buy at most "+$scope.store.toBuy[prdctIndex].stock+" "+$scope.store.toBuy[prdctIndex].name;
-        }
-        else if(qty==0){
-          $scope.message = "Buy at least one "+ $scope.store.toBuy[prdctIndex].name +" or more !";
-        }
-        else{
-          $scope.store.toBuy[prdctIndex].stock = $scope.store.toBuy[prdctIndex].stock - qty;
-          updateStore(prdctIndex, qty);
-          $scope.message=false;
-          
-          if($scope.store.toBuy[prdctIndex].stock==0){
-            $scope.store.toBuy.splice(prdctIndex,1);
-            toBuylgh = $scope.store.toBuy.length;
-            boughtlgh = $scope.store.bought.length;
-          }
-        }
+    var showBoughtButton = function(item){
+        $scope.store.toBuy[item].boughtBtn = true;
     };
     
-    var updateStore = function(prdctIndex, qty){
-        $scope.store.toBuy[prdctIndex].quantity=0;
-        $scope.store.bought.push({name :$scope.store.toBuy[prdctIndex].name, quantity:qty});
+    var updateQty = function(item, qty){
+        item = qty;
     };
-    
+
+    var addItem = function(obj,arr){
+        arr.push(obj);
+    };
+
+    var removeItem = function(item,arr){
+      arr.splice(item,1);
+    };
   }
 
 })();
