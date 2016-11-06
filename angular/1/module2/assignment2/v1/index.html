@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Lunch Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">  
+  </head>
+  <body ng-app="shopApp">
+    <div ng-controller="ShopCtrl" class="container top30" >
+      <div class="row">
+        <div>Product to buy :</div>
+        <form class="form-inline">
+        <span ng-if="message" class="error">{{message}}</span>
+        <ul class="to-buy">
+          <li ng-repeat="item in store.toBuy">
+            <input type="button" value="Buy" ng-click="toBuy($index,item.quantity)" class="btn tiny" >
+            <div class="form-group">
+            <label for="id-qty">Quantity : 
+              <input id="id-qty" type="text" ng-model="item.quantity" ng-focus="item.quantity=''" ng-blur="item.quantity">
+            </label>
+            </div>
+            <span>{{item.name}}  </span>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+            <span>Product stock : {{item.stock}}</span>
+          </li>
+        </ul>
+          
+        <div>Already Bought:</div>
+        <ul>
+          <span ng-show="store.bought==0"> Empty !</span>
+          <li ng-repeat="item in store.bought">
+            <span>{{item.name}} :</span>
+            <span>{{item.quantity}}</span>
+          </li>
+        </ul>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+
